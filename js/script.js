@@ -2,107 +2,172 @@
 
 /**
  * This script handles:
- * 1. Scene/Page transitions
- * 2. Button click events
- * 3. Smooth animations between pages
+ * 1. Navigation link updates (active state)
+ * 2. Smooth scrolling to sections
+ * 3. Music player toggle
+ * 4. Back to home functionality
  */
 
-// Get all scene elements
-const scenes = document.querySelectorAll('.scene');
-const enterBtn = document.getElementById('enterBtn');
-const navButtons = document.querySelectorAll('[data-scene]');
+// ==================== NAVIGATION LINK ACTIVATION ==================== //
 
 /**
- * FUNCTION: showScene
- * Hides all scenes and shows the requested scene with animation
- * 
- * @param {string} sceneId - The ID of the scene to display
+ * Update active nav link based on scroll position
  */
-function showScene(sceneId) {
-    // Hide all scenes
-    scenes.forEach(scene => {
-        scene.classList.remove('active');
-    });
+const navLinks = document.querySelectorAll('.nav-link');
 
-    // Show the requested scene
-    const targetScene = document.getElementById(sceneId);
-    if (targetScene) {
-        targetScene.classList.add('active');
-        // Scroll to top for better UX
-        window.scrollTo(0, 0);
+window.addEventListener('scroll', () => {
+    let current = '';
+
+    // Check which section is currently in view
+    if (window.scrollY < 500) {
+        current = 'home';
+    } else if (window.scrollY < 1200) {
+        current = 'cards';
+    } else {
+        current = 'about';
+    }
+
+    // Update active state
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').includes(current)) {
+            link.classList.add('active');
+        }
+    });
+});
+
+// ==================== SMOOTH SCROLLING ==================== //
+
+/**
+ * Enable smooth scrolling for all navigation links
+ */
+navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (href.startsWith('#')) {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    });
+});
+
+// ==================== CTA BUTTON NAVIGATION ==================== //
+
+/**
+ * Handle main CTA button click
+ * Scroll to protagonist section
+ */
+const ctaButtons = document.querySelectorAll('.primary-btn');
+ctaButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const protagonistSection = document.querySelector('#protagonist');
+        if (protagonistSection) {
+            protagonistSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+});
+
+// ==================== CARD LINK NAVIGATION ==================== //
+
+/**
+ * Handle card link clicks
+ * Navigate to respective sections
+ */
+const cardLinks = document.querySelectorAll('.card-link');
+cardLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const href = link.getAttribute('href');
+        const target = document.querySelector(href);
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+});
+
+// ==================== MUSIC PLAYER ==================== //
+
+/**
+ * Toggle music on button click
+ * Note: Add your own audio file for background music
+ */
+const musicBtn = document.getElementById('musicBtn');
+let musicPlaying = false;
+
+musicBtn.addEventListener('click', () => {
+    musicPlaying = !musicPlaying;
+    
+    if (musicPlaying) {
+        musicBtn.style.background = '#d4af37';
+        musicBtn.style.color = '#0a0a0a';
+        console.log('🎵 Music started...');
+    } else {
+        musicBtn.style.background = 'none';
+        musicBtn.style.color = '#d4af37';
+        console.log('🎵 Music stopped.');
+    }
+});
+
+// ==================== BACK TO HOME ==================== //
+
+/**
+ * Function to navigate back to home
+ * Called from hidden sections
+ */
+function backToHome() {
+    const homeSection = document.querySelector('#home');
+    if (homeSection) {
+        homeSection.scrollIntoView({ behavior: 'smooth' });
     }
 }
 
-/**
- * EVENT LISTENER: Enter Button
- * When user clicks "ENTER AT YOUR OWN RISK" button
- * Navigate to the Protagonist page
- */
-enterBtn.addEventListener('click', () => {
-    showScene('protagonist');
-});
+// ==================== EASTER EGG ==================== //
 
 /**
- * EVENT LISTENERS: Navigation Buttons
- * When user clicks any navigation button (← BACK or → NEXT)
- * Navigate to the specified scene using data-scene attribute
+ * Console messages for developers
  */
-navButtons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        const targetScene = e.target.dataset.scene;
-        showScene(targetScene);
-    });
-});
+console.log('%c🖤 Welcome to Mathbhoot 🖤', 'color: #d4af37; font-size: 20px; font-weight: bold;');
+console.log('%cWhere Math Meets The Unknown', 'color: #8a2be2; font-size: 14px; font-style: italic;');
+console.log('%cLearn. Solve. Escape.', 'color: #d4af37; font-size: 12px;');
 
-/**
- * KEYBOARD NAVIGATION (BONUS FEATURE)
- * Allow users to navigate using arrow keys
- * Arrow Left = Go Back
- * Arrow Right = Go Forward
- */
-const sceneOrder = ['home', 'protagonist', 'antagonist', 'escape', 'about'];
+// ==================== PAGE LOAD ==================== //
 
-document.addEventListener('keydown', (e) => {
-    const currentScene = document.querySelector('.scene.active').id;
-    const currentIndex = sceneOrder.indexOf(currentScene);
-
-    if (e.key === 'ArrowLeft' && currentIndex > 0) {
-        // Go to previous scene
-        showScene(sceneOrder[currentIndex - 1]);
-    } else if (e.key === 'ArrowRight' && currentIndex < sceneOrder.length - 1) {
-        // Go to next scene
-        showScene(sceneOrder[currentIndex + 1]);
-    }
-});
-
-/**
- * SCROLL BEHAVIOR
- * Smooth scroll effect when navigating between pages
- */
-window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
-    if (navbar && window.scrollY > 50) {
-        navbar.style.opacity = '0.8';
-    } else if (navbar) {
-        navbar.style.opacity = '1';
-    }
-});
-
-/**
- * PAGE LOAD INITIALIZATION
- * Ensure the home page is displayed on page load
- */
 document.addEventListener('DOMContentLoaded', () => {
-    showScene('home');
-    console.log('🖤 Welcome to Mathbhoot - Where Math Meets The Unknown 🖤');
+    // Ensure home section is active on page load
+    const homeLink = document.querySelector('a[href="#home"]');
+    if (homeLink) {
+        homeLink.classList.add('active');
+    }
 });
 
-// ==================== EASTER EGGS & INTERACTIVITY ==================== //
+// ==================== KEYBOARD SHORTCUTS ==================== //
 
 /**
- * EASTER EGG: Console message
- * Just a fun message for developers who inspect the page
+ * Add keyboard shortcuts for navigation
+ * H = Home
+ * P = Protagonist
+ * A = Antagonist/About
+ * E = Escape Guide
  */
-console.log('%c🖤 Welcome to Mathbhoot 🖤', 'color: #8a2be2; font-size: 20px; font-weight: bold;');
-console.log('%cWhere Math Meets The Unknown', 'color: #b22222; font-size: 14px; font-style: italic;');
-console.log('%cCan you escape?', 'color: #e0e0e0; font-size: 12px;');
+document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey || e.metaKey) return; // Don't interfere with browser shortcuts
+
+    switch(e.key.toLowerCase()) {
+        case 'h':
+            document.querySelector('#home').scrollIntoView({ behavior: 'smooth' });
+            break;
+        case 'p':
+            document.querySelector('#protagonist').scrollIntoView({ behavior: 'smooth' });
+            break;
+        case 'e':
+            document.querySelector('#escape').scrollIntoView({ behavior: 'smooth' });
+            break;
+        case 'a':
+            document.querySelector('#about').scrollIntoView({ behavior: 'smooth' });
+            break;
+    }
+});
