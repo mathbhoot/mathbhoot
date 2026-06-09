@@ -4,176 +4,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mathbhoot - Where Math Meets The Unknown</title>
+    <title>Mathbhoot - Learn Math, Escape Fear</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
 
-    <!-- HOME PAGE (Landing Page) -->
-    <section id="home" class="scene active">
-        <div class="background"></div>
-        <div class="overlay"></div>
-        <div class="fog-layer"></div>
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <!-- Logo -->
+            <div class="logo-section">
+                <div class="logo">
+                    <span class="logo-text">🦇</span>
+                    <div class="logo-info">
+                        <h1>MATHBHOOT</h1>
+                        <p>LEARN MATH. ESCAPE FEAR.</p>
+                    </div>
+                </div>
+            </div>
 
-        <div class="content">
-            <h1 class="logo-text">MATHBHOOT</h1>
-            <p class="tagline">Where Math Meets The Unknown</p>
-            <button id="enterBtn" class="cta-button">ENTER AT YOUR OWN RISK</button>
+            <!-- Navigation Links -->
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active">HOME</a></li>
+                <li><a href="#protagonist" class="nav-link">PROTAGONIST</a></li>
+                <li><a href="#antagonist" class="nav-link">ANTAGONIST</a></li>
+                <li><a href="#escape" class="nav-link">ESCAPE GUIDE</a></li>
+                <li><a href="#about" class="nav-link">ABOUT ME</a></li>
+            </ul>
+
+            <!-- Music Toggle -->
+            <button class="music-btn" id="musicBtn" title="Toggle Music">
+                <i class="fas fa-music"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HOME SECTION -->
+    <section id="home" class="hero-section">
+        <div class="hero-background">
+            <div class="hero-image"></div>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-subtitle">WELCOME TO</p>
+                <h1 class="hero-title">MATHBHOOT</h1>
+                <div class="title-divider"></div>
+
+                <p class="hero-description">
+                    An interactive adventure where math meets mystery. Solve challenges, unlock secrets, and escape the Mathbhoot Villa.
+                </p>
+
+                <button class="cta-button primary-btn">
+                    <span>ENTER AT YOUR OWN RISK</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <div class="hero-castle">
+                <div class="castle-placeholder">🏰</div>
+            </div>
         </div>
     </section>
 
-    <!-- PROTAGONIST PAGE -->
-    <section id="protagonist" class="scene">
-        <div class="scene-background protagonist-bg"></div>
-
-        <nav class="navbar">
-            <button class="nav-btn" data-scene="home">← HOME</button>
-        </nav>
-
-        <div class="scene-content">
-            <div class="card">
-                <h2 class="scene-title">The Protagonist</h2>
-                <div class="divider"></div>
-
-                <div class="character-info">
-                    <div class="character-image">
-                        <div class="placeholder-image">👨‍🔬</div>
-                    </div>
-                    <div class="character-text">
-                        <p>
-                            A mathematician lost in the shadows of an ancient library, seeking truth hidden in 
-                            equations that defy logic. Their mind is their weapon, but fear... fear is their greatest 
-                            enemy.
-                        </p>
-                        <p>
-                            Once brilliant, now cursed to solve the riddles of darkness itself. Every number holds a secret. 
-                            Every formula might be their salvation... or doom.
-                        </p>
-                    </div>
-                </div>
-
-                <button class="scene-btn" data-scene="antagonist">Meet The Antagonist →</button>
+    <!-- CARDS SECTION -->
+    <section class="cards-section">
+        <div class="cards-container">
+            <!-- Protagonist Card -->
+            <div class="card protagonist-card">
+                <div class="card-icon">👨‍🔬</div>
+                <h3 class="card-title">PROTAGONIST</h3>
+                <p class="card-description">
+                    You are the chosen one. Smart, curious, and brave. Your math skills are your only way out.
+                </p>
+                <a href="#protagonist" class="card-link">
+                    MEET YOURSELF <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
+
+            <!-- Antagonist Card -->
+            <div class="card antagonist-card">
+                <div class="card-icon">👹</div>
+                <h3 class="card-title">ANTAGONIST</h3>
+                <p class="card-description">
+                    Mathbhoot lurks in the villa. It feeds on fear and mistakes. Outsmart it to survive.
+                </p>
+                <a href="#antagonist" class="card-link">
+                    KNOW YOUR ENEMY <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- Escape Guide Card -->
+            <div class="card escape-card">
+                <div class="card-icon">📖</div>
+                <h3 class="card-title">ESCAPE GUIDE</h3>
+                <p class="card-description">
+                    Learn the rules, tips, and strategies to escape the villa and become a math master.
+                </p>
+                <a href="#escape" class="card-link">
+                    READ THE GUIDE <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- Enter Now Card -->
+            <div class="card enter-card">
+                <div class="card-icon">🚪</div>
+                <h3 class="card-title">ENTER</h3>
+                <p class="card-description">
+                    The villa awaits you. Are you ready to solve, survive, and escape?
+                </p>
+                <a href="#protagonist" class="card-link">
+                    ENTER NOW <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT ME SECTION -->
+    <section id="about" class="about-section">
+        <div class="about-container">
+            <!-- Author Image -->
+            <div class="about-image">
+                <div class="author-placeholder">
+                    <i class="fas fa-user"></i>
+                </div>
+            </div>
+
+            <!-- About Content -->
+            <div class="about-content">
+                <h2 class="about-title">ABOUT ME</h2>
+                <div class="about-divider"></div>
+
+                <p class="about-text">
+                    Hi, I'm Sakshi.
+                </p>
+
+                <p class="about-text">
+                    I created Mathbhoot to make math exciting, mysterious, and unforgettable. I believe every student can become a math hero when learning feels like an adventure.
+                </p>
+
+                <p class="about-text">
+                    This is just the beginning. Many more rooms, challenges, and stories are coming your way.
+                </p>
+
+                <p class="about-quote">
+                    Let's make math magical together.
+                </p>
+
+                <p class="author-signature">— Sakshi</p>
+            </div>
+
+            <!-- Author Feather -->
+            <div class="feather-decoration">
+                <i class="fas fa-feather"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Mathbhoot. All rights reserved.</p>
+            <p><i class="fas fa-skull"></i> Learn. Solve. Escape.</p>
+        </div>
+    </footer>
+
+    <!-- PROTAGONIST PAGE (Hidden for now, shown on click) -->
+    <section id="protagonist" class="hidden-section">
+        <nav class="back-nav">
+            <button class="back-btn" onclick="backToHome()">← BACK TO HOME</button>
+        </nav>
+        <div class="scene-content">
+            <h2>The Protagonist</h2>
+            <p>You are the chosen one. Smart, curious, and brave. Your math skills are your only way out of the Mathbhoot Villa.</p>
         </div>
     </section>
 
     <!-- ANTAGONIST PAGE -->
-    <section id="antagonist" class="scene">
-        <div class="scene-background antagonist-bg"></div>
-
-        <nav class="navbar">
-            <button class="nav-btn" data-scene="protagonist">← BACK</button>
+    <section id="antagonist" class="hidden-section">
+        <nav class="back-nav">
+            <button class="back-btn" onclick="backToHome()">← BACK TO HOME</button>
         </nav>
-
         <div class="scene-content">
-            <div class="card dark-card">
-                <h2 class="scene-title">The Antagonist</h2>
-                <div class="divider red"></div>
-
-                <div class="character-info">
-                    <div class="character-image">
-                        <div class="placeholder-image antagonist">👹</div>
-                    </div>
-                    <div class="character-text">
-                        <p>
-                            A presence born from forgotten calculations, a mathematical chaos that hungers for order. 
-                            It speaks in numbers, thinks in algorithms, and feeds on human confusion.
-                        </p>
-                        <p>
-                            Neither alive nor dead, it exists in the spaces between solutions. It has been waiting for 
-                            a mind brilliant enough to understand its purpose... or foolish enough to challenge it.
-                        </p>
-                    </div>
-                </div>
-
-                <button class="scene-btn danger" data-scene="escape">Find An Escape →</button>
-            </div>
+            <h2>The Antagonist</h2>
+            <p>Mathbhoot is a mysterious entity that lurks within the villa. It feeds on fear and mathematical errors. To survive, you must outsmart it.</p>
         </div>
     </section>
 
     <!-- ESCAPE GUIDE PAGE -->
-    <section id="escape" class="scene">
-        <div class="scene-background escape-bg"></div>
-
-        <nav class="navbar">
-            <button class="nav-btn" data-scene="antagonist">← BACK</button>
+    <section id="escape" class="hidden-section">
+        <nav class="back-nav">
+            <button class="back-btn" onclick="backToHome()">← BACK TO HOME</button>
         </nav>
-
         <div class="scene-content">
-            <div class="card">
-                <h2 class="scene-title">The Escape Guide</h2>
-                <div class="divider"></div>
-
-                <div class="guide-content">
-                    <div class="guide-item">
-                        <h3>🔐 Step 1: Decode The Cipher</h3>
-                        <p>The first numbers you see are not random. They form a pattern. Find it.</p>
-                    </div>
-
-                    <div class="guide-item">
-                        <h3>🌀 Step 2: Break The Loop</h3>
-                        <p>The antagonist feeds on repetition. Change your approach. Think differently.</p>
-                    </div>
-
-                    <div class="guide-item">
-                        <h3>⚡ Step 3: Accept The Truth</h3>
-                        <p>Not all equations have solutions. Sometimes, you must accept the chaos to escape it.</p>
-                    </div>
-
-                    <div class="guide-item">
-                        <h3>🚪 Step 4: The Final Theorem</h3>
-                        <p>The answer lies where mathematics meets mortality. Only then can you leave...</p>
-                    </div>
-                </div>
-
-                <button class="scene-btn" data-scene="about">Learn About The Author →</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- ABOUT AUTHOR PAGE -->
-    <section id="about" class="scene">
-        <div class="scene-background about-bg"></div>
-
-        <nav class="navbar">
-            <button class="nav-btn" data-scene="escape">← BACK</button>
-        </nav>
-
-        <div class="scene-content">
-            <div class="card">
-                <h2 class="scene-title">About The Author</h2>
-                <div class="divider"></div>
-
-                <div class="author-content">
-                    <div class="author-section">
-                        <h3>The Creator</h3>
-                        <p>
-                            Mathbhoot was born from the intersection of curiosity and fear—a digital haunting 
-                            that explores the boundaries between calculation and chaos, logic and madness.
-                        </p>
-                    </div>
-
-                    <div class="author-section">
-                        <h3>The Vision</h3>
-                        <p>
-                            What if mathematics itself could be mysterious? What if formulas held secrets, 
-                            and numbers whispered truths too terrible to comprehend? This story asks: 
-                            Can knowledge save us, or doom us?
-                        </p>
-                    </div>
-
-                    <div class="author-section">
-                        <h3>Connect</h3>
-                        <p>
-                            For inquiries, collaborations, or if you've managed to escape... 
-                            <a href="mailto:hello@mathbhoot.com">hello@mathbhoot.com</a>
-                        </p>
-                    </div>
-                </div>
-
-                <button class="scene-btn" data-scene="home">Return Home</button>
-            </div>
+            <h2>Escape Guide</h2>
+            <p>Follow these steps to escape the Mathbhoot Villa:</p>
+            <ol>
+                <li>Master the basics of mathematics</li>
+                <li>Solve the puzzles presented to you</li>
+                <li>Unlock the secret chambers</li>
+                <li>Defeat Mathbhoot and escape</li>
+            </ol>
         </div>
     </section>
 
