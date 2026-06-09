@@ -4,38 +4,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mathbhoot</title>
-
+    <title>Mathbhoot - Where Math Meets The Unknown</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-    <section id="scene1">
-
+    <!-- HOME PAGE (Landing Page) -->
+    <section id="home" class="scene active">
         <div class="background"></div>
-
         <div class="overlay"></div>
-
         <div class="fog-layer"></div>
 
         <div class="content">
-
-            <img
-                src="assets/images/logo.png"
-                alt="Mathbhoot Logo"
-                class="logo">
-
-            <p class="tagline">
-                Where Math Meets The Unknown
-            </p>
-
-            <button id="enterBtn">
-                ENTER AT YOUR OWN RISK
-            </button>
-
+            <h1 class="logo-text">MATHBHOOT</h1>
+            <p class="tagline">Where Math Meets The Unknown</p>
+            <button id="enterBtn" class="cta-button">ENTER AT YOUR OWN RISK</button>
         </div>
-
     </section>
-    
-   
+
+    <!-- PROTAGONIST PAGE -->
+    <section id="protagonist" class="scene">
+        <div class="scene-background protagonist-bg"></div>
+
+        <nav class="navbar">
+            <button class="nav-btn" data-scene="home">← HOME</button>
+        </nav>
+
+        <div class="scene-content">
+            <div class="card">
+                <h2 class="scene-title">The Protagonist</h2>
+                <div class="divider"></div>
+
+                <div class="character-info">
+                    <div class="character-image">
+                        <div class="placeholder-image">👨‍🔬</div>
+                    </div>
+                    <div class="character-text">
+                        <p>
+                            A mathematician lost in the shadows of an ancient library, seeking truth hidden in 
+                            equations that defy logic. Their mind is their weapon, but fear... fear is their greatest 
+                            enemy.
+                        </p>
+                        <p>
+                            Once brilliant, now cursed to solve the riddles of darkness itself. Every number holds a secret. 
+                            Every formula might be their salvation... or doom.
+                        </p>
+                    </div>
+                </div>
+
+                <button class="scene-btn" data-scene="antagonist">Meet The Antagonist →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ANTAGONIST PAGE -->
+    <section id="antagonist" class="scene">
+        <div class="scene-background antagonist-bg"></div>
+
+        <nav class="navbar">
+            <button class="nav-btn" data-scene="protagonist">← BACK</button>
+        </nav>
+
+        <div class="scene-content">
+            <div class="card dark-card">
+                <h2 class="scene-title">The Antagonist</h2>
+                <div class="divider red"></div>
+
+                <div class="character-info">
+                    <div class="character-image">
+                        <div class="placeholder-image antagonist">👹</div>
+                    </div>
+                    <div class="character-text">
+                        <p>
+                            A presence born from forgotten calculations, a mathematical chaos that hungers for order. 
+                            It speaks in numbers, thinks in algorithms, and feeds on human confusion.
+                        </p>
+                        <p>
+                            Neither alive nor dead, it exists in the spaces between solutions. It has been waiting for 
+                            a mind brilliant enough to understand its purpose... or foolish enough to challenge it.
+                        </p>
+                    </div>
+                </div>
+
+                <button class="scene-btn danger" data-scene="escape">Find An Escape →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ESCAPE GUIDE PAGE -->
+    <section id="escape" class="scene">
+        <div class="scene-background escape-bg"></div>
+
+        <nav class="navbar">
+            <button class="nav-btn" data-scene="antagonist">← BACK</button>
+        </nav>
+
+        <div class="scene-content">
+            <div class="card">
+                <h2 class="scene-title">The Escape Guide</h2>
+                <div class="divider"></div>
+
+                <div class="guide-content">
+                    <div class="guide-item">
+                        <h3>🔐 Step 1: Decode The Cipher</h3>
+                        <p>The first numbers you see are not random. They form a pattern. Find it.</p>
+                    </div>
+
+                    <div class="guide-item">
+                        <h3>🌀 Step 2: Break The Loop</h3>
+                        <p>The antagonist feeds on repetition. Change your approach. Think differently.</p>
+                    </div>
+
+                    <div class="guide-item">
+                        <h3>⚡ Step 3: Accept The Truth</h3>
+                        <p>Not all equations have solutions. Sometimes, you must accept the chaos to escape it.</p>
+                    </div>
+
+                    <div class="guide-item">
+                        <h3>🚪 Step 4: The Final Theorem</h3>
+                        <p>The answer lies where mathematics meets mortality. Only then can you leave...</p>
+                    </div>
+                </div>
+
+                <button class="scene-btn" data-scene="about">Learn About The Author →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT AUTHOR PAGE -->
+    <section id="about" class="scene">
+        <div class="scene-background about-bg"></div>
+
+        <nav class="navbar">
+            <button class="nav-btn" data-scene="escape">← BACK</button>
+        </nav>
+
+        <div class="scene-content">
+            <div class="card">
+                <h2 class="scene-title">About The Author</h2>
+                <div class="divider"></div>
+
+                <div class="author-content">
+                    <div class="author-section">
+                        <h3>The Creator</h3>
+                        <p>
+                            Mathbhoot was born from the intersection of curiosity and fear—a digital haunting 
+                            that explores the boundaries between calculation and chaos, logic and madness.
+                        </p>
+                    </div>
+
+                    <div class="author-section">
+                        <h3>The Vision</h3>
+                        <p>
+                            What if mathematics itself could be mysterious? What if formulas held secrets, 
+                            and numbers whispered truths too terrible to comprehend? This story asks: 
+                            Can knowledge save us, or doom us?
+                        </p>
+                    </div>
+
+                    <div class="author-section">
+                        <h3>Connect</h3>
+                        <p>
+                            For inquiries, collaborations, or if you've managed to escape... 
+                            <a href="mailto:hello@mathbhoot.com">hello@mathbhoot.com</a>
+                        </p>
+                    </div>
+                </div>
+
+                <button class="scene-btn" data-scene="home">Return Home</button>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
