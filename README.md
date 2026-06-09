@@ -21,7 +21,7 @@ I believe mathematics is everywhere, and everyone can excel at it with the right
 ## 💻 What I Build
 
 ### Interactive Learning Platforms
-Creating web-based tools and applications that allow students to:
+Creating website that allow students to:
 - Solve mathematical problems interactively
 - Visualize complex concepts through animations and simulations
 - Explore solutions with creative freedom and imagination
@@ -72,9 +72,6 @@ Check out my repositories to explore:
 - Visualization and simulation tools
 - Educational web applications
 
-*[Specific projects will be linked here]*
-
----
 
 ## 📊 My Impact
 
