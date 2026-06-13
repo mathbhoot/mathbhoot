@@ -106,3 +106,37 @@ function createTouchOrb(x, y){
     }, 1200);
 
 }
+const ambience = document.getElementById("ambience");
+const soundToggle = document.getElementById("sound-toggle");
+
+if(ambience){
+
+    ambience.volume = 0.15;
+
+    let playing = false;
+
+    soundToggle.addEventListener("click", (e)=>{
+
+        e.preventDefault();
+
+        if(!playing){
+
+            ambience.play();
+
+            soundToggle.textContent = "🔇";
+
+            playing = true;
+
+        }else{
+
+            ambience.pause();
+
+            soundToggle.textContent = "🔊";
+
+            playing = false;
+
+        }
+
+    });
+
+}
