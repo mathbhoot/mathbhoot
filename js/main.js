@@ -14,95 +14,20 @@ title.addEventListener('mouseout', () => {
     title.style.textShadow = "none";
 
 });
-/* MOBILE */
-
-@media (max-width: 768px){
-
-    nav{
-        padding:15px 20px;
-        flex-direction:column;
-        gap:15px;
-    }
-
-    .logo{
-        width:70px;
-    }
-
-    nav ul{
-        gap:15px;
-        flex-wrap:wrap;
-        justify-content:center;
-    }
-
-    nav a{
-        font-size:14px;
-    }
-
-    .hero{
-
-        min-height:100vh;
-
-        background-position:center;
-
-        padding:120px 20px 50px 20px;
-    }
-
-    .hero-content{
-
-        margin-left:0;
-
-        max-width:100%;
-
-        text-align:center;
-    }
-
-    .hero-content h2{
-
-        font-size:30px;
-    }
-
-    .hero-content h1{
-
-        font-size:60px;
-
-        line-height:1;
-    }
-
-    .hero-content p{
-
-        font-size:18px;
-    }
-
-    button{
-
-        width:100%;
-
-        max-width:320px;
-    }
-
-}
-
-// existing code
-
-// existing code
-
-// existing code
-
 
 const cursor = document.querySelector(".cursor");
 
-document.addEventListener("mousemove", (e) => {
+// Check if cursor element exists before using it
+if (cursor) {
+    document.addEventListener("mousemove", (e) => {
+        cursor.style.left = e.clientX + "px";
+        cursor.style.top = e.clientY + "px";
+        createSpark(e.clientX, e.clientY);
+    });
+}
 
-    cursor.style.left = e.clientX + "px";
-    cursor.style.top = e.clientY + "px";
-
-    createSpark(e.clientX, e.clientY);
-});
-
-function createSpark(x,y){
-
+function createSpark(x, y) {
     const spark = document.createElement("div");
-
     spark.classList.add("spark");
 
     const colors = [
@@ -112,18 +37,13 @@ function createSpark(x,y){
         "#fbbf24"
     ];
 
-    spark.style.background =
-        colors[Math.floor(Math.random()*colors.length)];
-
-    spark.style.left =
-        (x + (Math.random()*20-10)) + "px";
-
-    spark.style.top =
-        (y + (Math.random()*20-10)) + "px";
+    spark.style.background = colors[Math.floor(Math.random() * colors.length)];
+    spark.style.left = (x + (Math.random() * 20 - 10)) + "px";
+    spark.style.top = (y + (Math.random() * 20 - 10)) + "px";
 
     document.body.appendChild(spark);
 
-    setTimeout(()=>{
+    setTimeout(() => {
         spark.remove();
-    },1000);
+    }, 1000);
 }
