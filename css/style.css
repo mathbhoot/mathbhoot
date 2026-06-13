@@ -390,4 +390,20 @@ button:hover::before{
             scale(0.3);
     }
 }
+.hero{
 
+    animation: moonBreath 8s ease-in-out infinite;
+
+}
+
+@keyframes moonBreath{
+
+    0%,100%{
+        filter:brightness(1);
+    }
+
+    50%{
+        filter:brightness(1.12);
+    }
+
+}
