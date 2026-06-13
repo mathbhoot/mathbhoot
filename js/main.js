@@ -2,6 +2,8 @@
 
 const title = document.querySelector('.hero-content h1');
 
+if (title) {
+
 title.addEventListener('mouseover', () => {
 
     title.style.textShadow =
@@ -14,6 +16,8 @@ title.addEventListener('mouseout', () => {
     title.style.textShadow = "none";
 
 });
+
+}
 
 const cursor = document.querySelector(".cursor");
 
@@ -71,6 +75,10 @@ window.addEventListener("scroll", () => {
 
     const hero = document.querySelector(".hero");
 
+    if (!hero) {
+        return;
+    }
+
     const offset = window.pageYOffset;
 
     hero.style.backgroundPositionY =
@@ -109,7 +117,7 @@ function createTouchOrb(x, y){
 const ambience = document.getElementById("ambience");
 const soundToggle = document.getElementById("sound-toggle");
 
-if(ambience){
+if(ambience && soundToggle){
 
     ambience.volume = 0.15;
 
@@ -121,7 +129,12 @@ if(ambience){
 
         if(!playing){
 
-            ambience.play();
+            ambience.play().catch(() => {
+
+                playing = false;
+                soundToggle.textContent = "🔊";
+
+            });
 
             soundToggle.textContent = "🔇";
 
@@ -144,6 +157,8 @@ const h2 = document.querySelector(".hero-content h2");
 const h1 = document.querySelector(".hero-content h1");
 const p = document.querySelector(".hero-content p");
 const btn = document.querySelector(".hero-content button");
+
+if (h2 && h1 && p && btn) {
 
 const originalH2 = h2.textContent;
 const originalH1 = h1.textContent;
@@ -189,6 +204,8 @@ window.addEventListener("load",()=>{
 
 });
 
+}
+
 function typeText(element,text,speed,callback){
 
     let i=0;
@@ -208,28 +225,5 @@ function typeText(element,text,speed,callback){
         }
 
     },speed);
-
-}
-function typeText(element,text,speed,callback){
-
-    let i = 0;
-
-    const interval = setInterval(()=>{
-
-        element.textContent += text.charAt(i);
-
-        i++;
-
-        if(i >= text.length){
-
-            clearInterval(interval);
-
-            if(callback){
-                callback();
-            }
-
-        }
-
-    }, speed);
 
 }
