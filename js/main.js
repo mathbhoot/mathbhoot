@@ -19,11 +19,18 @@ const cursor = document.querySelector(".cursor");
 
 // Check if cursor element exists before using it
 if (cursor) {
+
     document.addEventListener("mousemove", (e) => {
+
         cursor.style.left = e.clientX + "px";
         cursor.style.top = e.clientY + "px";
-        createSpark(e.clientX, e.clientY);
+
+        for(let i = 0; i < 4; i++){
+            createSpark(e.clientX, e.clientY);
+        }
+
     });
+
 }
 
 function createSpark(x, y) {
