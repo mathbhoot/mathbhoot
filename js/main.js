@@ -77,3 +77,32 @@ window.addEventListener("scroll", () => {
         offset * 0.3 + "px";
 
 });
+/* MOBILE GHOST TOUCH EFFECT */
+
+document.addEventListener("touchstart", (e) => {
+
+    const touch = e.touches[0];
+
+    createTouchOrb(
+        touch.clientX,
+        touch.clientY
+    );
+
+});
+
+function createTouchOrb(x, y){
+
+    const orb = document.createElement("div");
+
+    orb.classList.add("touch-orb");
+
+    orb.style.left = x + "px";
+    orb.style.top = y + "px";
+
+    document.body.appendChild(orb);
+
+    setTimeout(() => {
+        orb.remove();
+    }, 1200);
+
+}
