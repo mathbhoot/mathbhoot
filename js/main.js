@@ -210,26 +210,3 @@ function typeText(element,text,speed,callback){
     },speed);
 
 }
-function typeText(element,text,speed,callback){
-
-    let i = 0;
-
-    const interval = setInterval(()=>{
-
-        element.textContent += text.charAt(i);
-
-        i++;
-
-        if(i >= text.length){
-
-            clearInterval(interval);
-
-            if(callback){
-                callback();
-            }
-
-        }
-
-    }, speed);
-
-}
