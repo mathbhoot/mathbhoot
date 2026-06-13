@@ -27,23 +27,36 @@ if (cursor) {
 }
 
 function createSpark(x, y) {
+
     const spark = document.createElement("div");
+
     spark.classList.add("spark");
+
+    const symbols = ["✦","✧","✶","✹"];
+
+    spark.innerHTML =
+        symbols[Math.floor(Math.random()*symbols.length)];
 
     const colors = [
         "#8b5cf6",
+        "#c084fc",
         "#60a5fa",
         "#22d3ee",
-        "#fbbf24"
+        "#facc15"
     ];
 
-    spark.style.background = colors[Math.floor(Math.random() * colors.length)];
-    spark.style.left = (x + (Math.random() * 20 - 10)) + "px";
-    spark.style.top = (y + (Math.random() * 20 - 10)) + "px";
+    spark.style.color =
+        colors[Math.floor(Math.random()*colors.length)];
+
+    spark.style.left =
+        (x + (Math.random()*40-20)) + "px";
+
+    spark.style.top =
+        (y + (Math.random()*40-20)) + "px";
 
     document.body.appendChild(spark);
 
     setTimeout(() => {
         spark.remove();
-    }, 1000);
+    },1200);
 }
