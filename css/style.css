@@ -360,15 +360,20 @@ button:hover::before{
         0 0 40px #8b5cf6;
     transform:translate(-50%,-50%);
 }
-
 .spark{
     position:fixed;
-    width:6px;
-    height:6px;
-    border-radius:50%;
     pointer-events:none;
     z-index:9998;
-    animation:fadeOut 1s linear forwards;
+
+    font-size:12px;
+
+    text-shadow:
+        0 0 5px currentColor,
+        0 0 10px currentColor;
+
+    animation:magicFade 1.2s forwards;
+}
+
 }
 
 @keyframes fadeOut{
