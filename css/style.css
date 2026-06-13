@@ -4,12 +4,15 @@
     box-sizing:border-box;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
     background:black;
     color:white;
     font-family:Arial, sans-serif;
     overflow-x:hidden;
-    cursor: none;
 }
 
 nav{
@@ -121,9 +124,16 @@ nav a{
     transition:color .3s ease, letter-spacing .3s ease, transform .3s ease, text-shadow .3s ease;
 }
 
+nav a:focus-visible,
+button:focus-visible{
+    outline:2px solid #facc15;
+    outline-offset:6px;
+}
+
 .hero{
     min-height:100vh;
     min-height:100svh;
+    min-height:100dvh;
 
     background-image:url("../assets/images/castle.png");
     background-size:cover;
@@ -133,6 +143,7 @@ nav a{
     align-items:center;
 
     position:relative;
+    isolation:isolate;
 }
 
 .overlay{
@@ -185,6 +196,7 @@ nav a{
     font-size:20px;
     line-height:1.5;
     margin-bottom:30px;
+    text-wrap:balance;
 }
 
 button{
@@ -366,6 +378,7 @@ button:hover::before{
         0 0 20px #8b5cf6,
         0 0 40px #8b5cf6;
     transform:translate(-50%,-50%);
+    display:none;
 }
 .spark{
     position:fixed;
@@ -400,6 +413,56 @@ button:hover::before{
 .hero{
 
     animation: moonBreath 8s ease-in-out 2.4s infinite;
+
+}
+
+@media (max-width:360px){
+
+    nav ul{
+        gap:8px 10px;
+    }
+
+    nav a{
+        font-size:12px;
+    }
+
+    .hero{
+        padding-top:190px;
+    }
+
+    .hero-content h1{
+        font-size:clamp(36px, 13vw, 46px);
+    }
+
+    .hero-content p{
+        font-size:15px;
+    }
+
+}
+
+@media (hover:hover) and (pointer:fine){
+
+    body{
+        cursor:none;
+    }
+
+    .cursor{
+        display:block;
+    }
+
+}
+
+@media (hover:none), (pointer:coarse){
+
+    nav a:hover{
+        letter-spacing:0;
+        transform:none;
+    }
+
+    .spark,
+    .cursor{
+        display:none;
+    }
 
 }
 
@@ -544,10 +607,10 @@ button:hover::before{
     }
 
 }
-.hero-content h2,
-.hero-content h1,
-.hero-content p,
-.hero-content button{
+body:not(.no-js) .hero-content h2,
+body:not(.no-js) .hero-content h1,
+body:not(.no-js) .hero-content p,
+body:not(.no-js) .hero-content button{
     opacity:0;
 }
 
@@ -628,6 +691,39 @@ button:hover::before{
         opacity:1;
         transform:translateY(0);
         text-shadow:none;
+    }
+
+}
+
+@media (prefers-reduced-motion:reduce){
+
+    html{
+        scroll-behavior:auto;
+    }
+
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        scroll-behavior:auto !important;
+        transition-duration:.01ms !important;
+    }
+
+    nav,
+    .overlay,
+    .hero-content h2,
+    .hero-content h1,
+    .hero-content p,
+    .hero-content button{
+        opacity:1 !important;
+        transform:none !important;
+    }
+
+    .cursor,
+    .spark,
+    .touch-orb{
+        display:none !important;
     }
 
 }

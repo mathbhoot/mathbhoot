@@ -3,64 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mathbhoot- Learn Math, Escape Fear</title>
+    <title>Mathbhoot - Interactive Math Mystery Adventure</title>
 
 <meta name="description"
-content="Mathbhoot is an interactive mathematical mystery adventure. Solve puzzles, uncover secrets, and escape the haunted villa.">
+content="Mathbhoot is an interactive math mystery adventure where learners solve puzzles, face haunted challenges, and escape the Mathbhoot villa.">
 
 <meta name="keywords"
-content="Mathbhoot, math puzzles, mathematical adventure, math mystery, escape room math, learning mathematics">
+content="Mathbhoot, math puzzles, math game, math adventure, math mystery, escape room math, learning mathematics">
 
 <meta name="author"
 content="Sakshi">
 
 <meta name="robots"
 content="index, follow">
+
+<link rel="canonical"
+href="https://mathbhoot.com/">
+
 <meta property="og:title"
-content="Mathbhoot - Learn Math, Escape Fear">
+content="Mathbhoot - Interactive Math Mystery Adventure">
 
 <meta property="og:description"
-content="Solve mathematical mysteries and escape the haunted Mathbhoot Villa.">
+content="Solve math puzzles, uncover secrets, and escape the haunted Mathbhoot villa.">
 
 <meta property="og:image"
 content="https://mathbhoot.com/assets/images/castle.png">
 
 <meta property="og:url"
-content="https://mathbhoot.com">
+content="https://mathbhoot.com/">
 
 <meta property="og:type"
 content="website">
+
+<meta name="twitter:card"
+content="summary_large_image">
+
+<meta name="twitter:title"
+content="Mathbhoot - Interactive Math Mystery Adventure">
+
+<meta name="twitter:description"
+content="Solve math puzzles, uncover secrets, and escape the haunted Mathbhoot villa.">
+
+<meta name="twitter:image"
+content="https://mathbhoot.com/assets/images/castle.png">
 
 <link rel="icon"
 href="assets/images/logo.png"
 type="image/png">
 
+<link rel="preload"
+href="assets/images/castle.png"
+as="image">
+
 <link rel="stylesheet" href="css/style.css">
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Mathbhoot",
+    "url": "https://mathbhoot.com/",
+    "description": "Mathbhoot is an interactive math mystery adventure where learners solve puzzles, face haunted challenges, and escape the Mathbhoot villa.",
+    "author": {
+        "@type": "Person",
+        "name": "Sakshi"
+    },
+    "keywords": [
+        "Mathbhoot",
+        "math puzzles",
+        "math game",
+        "math adventure",
+        "math mystery",
+        "escape room math"
+    ]
+}
+</script>
 
 </head>
 
-<body>
+<body class="no-js">
 
 <header>
     <nav>
-        <img src="assets/images/logo.png" alt="Mathbhoot Logo" class="logo">
+        <img src="assets/images/logo.png" alt="Mathbhoot Logo" class="logo" width="40" height="40">
 
         <ul>
-            <li><a href="#">Home</a></li>
+            <li><a href="#home">Home</a></li>
             <li><a href="#">Protagonist</a></li>
             <li><a href="#">Antagonist</a></li>
             <li><a href="#">Escape Guide</a></li>
             <li><a href="#">About Me</a></li>
             <li><a href="#" id="sound-toggle" aria-label="Toggle sound">🔊</a></li>
 </ul>
-<audio id="ambience" loop>
+<audio id="ambience" loop preload="none">
     <source src="assets/sounds/ambience.mp3" type="audio/mpeg">
 </audio>
     </nav>
     
 </header>
 
-<section class="hero">
+<main>
+
+<section class="hero" id="home" aria-label="Mathbhoot interactive math mystery adventure">
 
     <div class="overlay"></div>
 
@@ -75,12 +119,14 @@ type="image/png">
             Solve challenges, unlock secrets and escape the villa.
         </p>
 
-        <button>ENTER AT YOUR OWN RISK</button>
+        <button type="button" id="enter-villa">ENTER AT YOUR OWN RISK</button>
 
     </div>
 
 
 </section>
+
+</main>
 
 <div class="cursor"></div>
 <script src="js/main.js"></script>

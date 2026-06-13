@@ -1,5 +1,7 @@
+document.body.classList.remove("no-js");
 
-
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const hasFinePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 const title = document.querySelector('.hero-content h1');
 
 if (title) {
@@ -20,6 +22,7 @@ title.addEventListener('mouseout', () => {
 }
 
 const cursor = document.querySelector(".cursor");
+let lastSparkTime = 0;
 const typewriterSounds = Array.from({ length:6 }, () => new Audio("assets/sounds/typewriter.mp3"));
 
 typewriterSounds.forEach((sound) => {
@@ -28,7 +31,7 @@ typewriterSounds.forEach((sound) => {
 });
 
 let typewriterSoundUnlocked = false;
-let typewriterSoundEnabled = false;
+let typewriterSoundEnabled = true;
 let replayIntroWithSound = null;
 let typewriterSoundIndex = 0;
 
@@ -41,15 +44,25 @@ let typewriterSoundIndex = 0;
 
 });
 
+window.addEventListener("load", () => {
+    unlockTypewriterSound();
+});
+
 // Check if cursor element exists before using it
-if (cursor) {
+if (cursor && hasFinePointer && !prefersReducedMotion) {
 
     document.addEventListener("mousemove", (e) => {
 
         cursor.style.left = e.clientX + "px";
         cursor.style.top = e.clientY + "px";
 
-        for(let i = 0; i < 4; i++){
+        if(Date.now() - lastSparkTime < 45){
+            return;
+        }
+
+        lastSparkTime = Date.now();
+
+        for(let i = 0; i < 2; i++){
             createSpark(e.clientX, e.clientY);
         }
 
@@ -91,11 +104,22 @@ function createSpark(x, y) {
         spark.remove();
     },1200);
 }
+let tickingScroll = false;
+
 window.addEventListener("scroll", () => {
+
+    if(prefersReducedMotion || tickingScroll){
+        return;
+    }
+
+    tickingScroll = true;
+
+    requestAnimationFrame(() => {
 
     const hero = document.querySelector(".hero");
 
     if (!hero) {
+        tickingScroll = false;
         return;
     }
 
@@ -104,10 +128,18 @@ window.addEventListener("scroll", () => {
     hero.style.backgroundPositionY =
         offset * 0.3 + "px";
 
-});
+        tickingScroll = false;
+
+    });
+
+}, { passive:true });
 /* MOBILE GHOST TOUCH EFFECT */
 
 document.addEventListener("touchstart", (e) => {
+
+    if(prefersReducedMotion){
+        return;
+    }
 
     const touch = e.touches[0];
 
@@ -175,7 +207,6 @@ if(ambience && soundToggle){
             soundToggle.textContent = "🔊";
 
             playing = false;
-            typewriterSoundEnabled = false;
 
         }
 
@@ -197,6 +228,17 @@ h2.textContent = "";
 h1.textContent = "";
 
 window.addEventListener("load",()=>{
+
+    if(prefersReducedMotion){
+        h2.textContent = originalH2;
+        h1.textContent = originalH1;
+        h2.classList.add("fade-in");
+        h1.classList.add("fade-in");
+        p.classList.add("blue-reveal");
+        btn.classList.add("slide-up");
+        introComplete = true;
+        return;
+    }
 
     playIntroSequence(3000);
 
@@ -259,6 +301,13 @@ replayIntroWithSound = () => {
 
 };
 
+btn.addEventListener("click", async () => {
+
+    await unlockTypewriterSound();
+    replayIntroWithSound();
+
+});
+
 }
 
 function typeText(element,text,speed,callback){
@@ -294,7 +343,7 @@ function typeText(element,text,speed,callback){
 
 function playTypewriterKey(speed){
 
-    if(!typewriterSoundEnabled || !typewriterSoundUnlocked){
+    if(!typewriterSoundEnabled || prefersReducedMotion){
         return;
     }
 
@@ -305,7 +354,9 @@ function playTypewriterKey(speed){
     sound.currentTime = 0;
     sound.playbackRate = speed <= 100 ? 1.08 : 0.95;
 
-    sound.play().catch(() => {
+    sound.play().then(() => {
+        typewriterSoundUnlocked = true;
+    }).catch(() => {
         // Some browsers block sound until the visitor interacts with the page.
     });
 
