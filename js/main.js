@@ -20,14 +20,17 @@ title.addEventListener('mouseout', () => {
 }
 
 const cursor = document.querySelector(".cursor");
-const typewriterSound = new Audio("assets/sounds/typewriter.mp3");
+const typewriterSounds = Array.from({ length:6 }, () => new Audio("assets/sounds/typewriter.mp3"));
 
-typewriterSound.preload = "auto";
-typewriterSound.volume = 0.18;
-typewriterSound.loop = true;
+typewriterSounds.forEach((sound) => {
+    sound.preload = "auto";
+    sound.volume = 0.2;
+});
+
 let typewriterSoundUnlocked = false;
 let typewriterSoundEnabled = false;
 let replayIntroWithSound = null;
+let typewriterSoundIndex = 0;
 
 ["pointerdown", "keydown", "touchstart"].forEach((eventName) => {
 
@@ -140,14 +143,14 @@ if(ambience && soundToggle){
 
     let playing = false;
 
-    soundToggle.addEventListener("click", (e)=>{
+    soundToggle.addEventListener("click", async (e)=>{
 
         e.preventDefault();
 
         if(!playing){
 
             typewriterSoundEnabled = true;
-            unlockTypewriterSound();
+            await unlockTypewriterSound();
 
             if(replayIntroWithSound){
                 replayIntroWithSound();
@@ -263,8 +266,6 @@ function typeText(element,text,speed,callback){
     let i=0;
     const letters = Array.from(text);
 
-    startTypewriterSound(speed);
-
     const interval=setInterval(()=>{
 
         if(i>=letters.length){
@@ -281,23 +282,30 @@ function typeText(element,text,speed,callback){
 
         element.textContent += letters[i];
 
+        if(letters[i].trim()){
+            playTypewriterKey(speed);
+        }
+
         i++;
 
     },speed);
 
 }
 
-function startTypewriterSound(speed){
+function playTypewriterKey(speed){
 
     if(!typewriterSoundEnabled || !typewriterSoundUnlocked){
         return;
     }
 
-    typewriterSound.pause();
-    typewriterSound.currentTime = 0;
-    typewriterSound.playbackRate = speed <= 100 ? 1.08 : 0.95;
+    const sound = typewriterSounds[typewriterSoundIndex];
+    typewriterSoundIndex = (typewriterSoundIndex + 1) % typewriterSounds.length;
 
-    typewriterSound.play().catch(() => {
+    sound.pause();
+    sound.currentTime = 0;
+    sound.playbackRate = speed <= 100 ? 1.08 : 0.95;
+
+    sound.play().catch(() => {
         // Some browsers block sound until the visitor interacts with the page.
     });
 
@@ -305,8 +313,10 @@ function startTypewriterSound(speed){
 
 function stopTypewriterSound(){
 
-    typewriterSound.pause();
-    typewriterSound.currentTime = 0;
+    typewriterSounds.forEach((sound) => {
+        sound.pause();
+        sound.currentTime = 0;
+    });
 
 }
 
@@ -315,13 +325,15 @@ function unlockTypewriterSound(){
     typewriterSoundEnabled = true;
 
     if(typewriterSoundUnlocked){
-        return;
+        return Promise.resolve();
     }
 
-    typewriterSound.play().then(() => {
+    const sound = typewriterSounds[0];
 
-        typewriterSound.pause();
-        typewriterSound.currentTime = 0;
+    return sound.play().then(() => {
+
+        sound.pause();
+        sound.currentTime = 0;
         typewriterSoundUnlocked = true;
 
     }).catch(() => {
