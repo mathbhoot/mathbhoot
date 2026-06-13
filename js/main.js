@@ -140,3 +140,96 @@ if(ambience){
     });
 
 }
+const h2 = document.querySelector(".hero-content h2");
+const h1 = document.querySelector(".hero-content h1");
+const p = document.querySelector(".hero-content p");
+const btn = document.querySelector(".hero-content button");
+
+const originalH2 = h2.textContent;
+const originalH1 = h1.textContent;
+
+h2.textContent = "";
+h1.textContent = "";
+
+window.addEventListener("load",()=>{
+
+    setTimeout(()=>{
+
+        h2.classList.add("fade-in");
+
+        typeText(h2,originalH2,100,()=>{
+
+            setTimeout(()=>{
+
+                h1.classList.add("fade-in");
+
+                typeText(h1,originalH1,120,()=>{
+
+                    h1.classList.add("mystic-glow");
+
+                    setTimeout(()=>{
+
+                        p.classList.add("slide-up");
+
+                    },500);
+
+                    setTimeout(()=>{
+
+                        btn.classList.add("slide-up");
+
+                    },1000);
+
+                });
+
+            },400);
+
+        });
+
+    },1000);
+
+});
+
+function typeText(element,text,speed,callback){
+
+    let i=0;
+
+    const interval=setInterval(()=>{
+
+        element.textContent += text.charAt(i);
+
+        i++;
+
+        if(i>=text.length){
+
+            clearInterval(interval);
+
+            if(callback) callback();
+
+        }
+
+    },speed);
+
+}
+function typeText(element,text,speed,callback){
+
+    let i = 0;
+
+    const interval = setInterval(()=>{
+
+        element.textContent += text.charAt(i);
+
+        i++;
+
+        if(i >= text.length){
+
+            clearInterval(interval);
+
+            if(callback){
+                callback();
+            }
+
+        }
+
+    }, speed);
+
+}
