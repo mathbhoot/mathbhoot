@@ -40,7 +40,7 @@ Creating website that allow students to:
 ### Core Skills
 - **Primary Strength**: 📐 **Mathematics** (Problem-solving, Pedagogy, Curriculum Design)
 
-### Development Technologies
+### Development Technologies(learning phase)
 - **Languages**: Python, JavaScript, SQL
 - **Frontend**: React, HTML5, CSS3, Canvas/SVG
 - **Backend**: Node.js, Express, REST APIs
