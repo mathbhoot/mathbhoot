@@ -555,6 +555,14 @@ button:hover::before{
     animation:fadeIn 1s forwards;
 }
 
+.hero-content h2.fade-in,
+.hero-content h1.fade-in,
+.hero-content h1.mystic-glow,
+.hero-content p.blue-reveal,
+.hero-content button.slide-up{
+    opacity:1;
+}
+
 .slide-up{
     animation:slideUp 1s forwards;
 }
@@ -580,12 +588,11 @@ button:hover::before{
     }
 }
 
-.mystic-glow{
-    opacity:1;
+.hero-content h1.mystic-glow{
     animation:mysticGlow 2s ease;
 }
 
-.blue-reveal{
+.hero-content p.blue-reveal{
     animation:blueReveal 1.4s ease forwards;
 }
 

@@ -20,6 +20,23 @@ title.addEventListener('mouseout', () => {
 }
 
 const cursor = document.querySelector(".cursor");
+const typewriterSound = new Audio("assets/sounds/typewriter.mp3");
+
+typewriterSound.preload = "auto";
+typewriterSound.volume = 0.18;
+typewriterSound.loop = true;
+let typewriterSoundUnlocked = false;
+let typewriterSoundEnabled = false;
+let replayIntroWithSound = null;
+
+["pointerdown", "keydown", "touchstart"].forEach((eventName) => {
+
+    document.addEventListener(eventName, unlockTypewriterSound, {
+        once:true,
+        passive:true
+    });
+
+});
 
 // Check if cursor element exists before using it
 if (cursor) {
@@ -129,6 +146,13 @@ if(ambience && soundToggle){
 
         if(!playing){
 
+            typewriterSoundEnabled = true;
+            unlockTypewriterSound();
+
+            if(replayIntroWithSound){
+                replayIntroWithSound();
+            }
+
             ambience.play().catch(() => {
 
                 playing = false;
@@ -143,10 +167,12 @@ if(ambience && soundToggle){
         }else{
 
             ambience.pause();
+            stopTypewriterSound();
 
             soundToggle.textContent = "🔊";
 
             playing = false;
+            typewriterSoundEnabled = false;
 
         }
 
@@ -162,23 +188,40 @@ if (h2 && h1 && p && btn) {
 
 const originalH2 = h2.textContent;
 const originalH1 = h1.textContent;
+let introComplete = false;
 
 h2.textContent = "";
 h1.textContent = "";
 
 window.addEventListener("load",()=>{
 
+    playIntroSequence(3000);
+
+});
+
+function playIntroSequence(delay){
+
+    introComplete = false;
+
+    h2.classList.remove("fade-in");
+    h1.classList.remove("fade-in", "mystic-glow");
+    p.classList.remove("blue-reveal");
+    btn.classList.remove("slide-up");
+
+    h2.textContent = "";
+    h1.textContent = "";
+
     setTimeout(()=>{
 
         h2.classList.add("fade-in");
 
-        typeText(h2,originalH2,100,()=>{
+        typeText(h2,originalH2,95,()=>{
 
             setTimeout(()=>{
 
                 h1.classList.add("fade-in");
 
-                typeText(h1,originalH1,120,()=>{
+                typeText(h1,originalH1,110,()=>{
 
                     h1.classList.add("mystic-glow");
 
@@ -191,6 +234,7 @@ window.addEventListener("load",()=>{
                     setTimeout(()=>{
 
                         btn.classList.add("slide-up");
+                        introComplete = true;
 
                     },1000);
 
@@ -200,9 +244,17 @@ window.addEventListener("load",()=>{
 
         });
 
-    },3000);
+    },delay);
 
-});
+}
+
+replayIntroWithSound = () => {
+
+    if(introComplete){
+        playIntroSequence(500);
+    }
+
+};
 
 }
 
@@ -211,20 +263,69 @@ function typeText(element,text,speed,callback){
     let i=0;
     const letters = Array.from(text);
 
+    startTypewriterSound(speed);
+
     const interval=setInterval(()=>{
-
-        element.textContent += letters[i];
-
-        i++;
 
         if(i>=letters.length){
 
             clearInterval(interval);
 
+            stopTypewriterSound();
+
             if(callback) callback();
+
+            return;
 
         }
 
+        element.textContent += letters[i];
+
+        i++;
+
     },speed);
+
+}
+
+function startTypewriterSound(speed){
+
+    if(!typewriterSoundEnabled || !typewriterSoundUnlocked){
+        return;
+    }
+
+    typewriterSound.pause();
+    typewriterSound.currentTime = 0;
+    typewriterSound.playbackRate = speed <= 100 ? 1.08 : 0.95;
+
+    typewriterSound.play().catch(() => {
+        // Some browsers block sound until the visitor interacts with the page.
+    });
+
+}
+
+function stopTypewriterSound(){
+
+    typewriterSound.pause();
+    typewriterSound.currentTime = 0;
+
+}
+
+function unlockTypewriterSound(){
+
+    typewriterSoundEnabled = true;
+
+    if(typewriterSoundUnlocked){
+        return;
+    }
+
+    typewriterSound.play().then(() => {
+
+        typewriterSound.pause();
+        typewriterSound.currentTime = 0;
+        typewriterSoundUnlocked = true;
+
+    }).catch(() => {
+        typewriterSoundUnlocked = false;
+    });
 
 }
