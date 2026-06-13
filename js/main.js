@@ -67,3 +67,13 @@ function createSpark(x, y) {
         spark.remove();
     },1200);
 }
+window.addEventListener("scroll", () => {
+
+    const hero = document.querySelector(".hero");
+
+    const offset = window.pageYOffset;
+
+    hero.style.backgroundPositionY =
+        offset * 0.3 + "px";
+
+});
