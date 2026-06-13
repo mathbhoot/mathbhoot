@@ -184,7 +184,7 @@ window.addEventListener("load",()=>{
 
                     setTimeout(()=>{
 
-                        p.classList.add("slide-up");
+                        p.classList.add("blue-reveal");
 
                     },500);
 
@@ -200,7 +200,7 @@ window.addEventListener("load",()=>{
 
         });
 
-    },1000);
+    },3000);
 
 });
 
@@ -209,14 +209,15 @@ window.addEventListener("load",()=>{
 function typeText(element,text,speed,callback){
 
     let i=0;
+    const letters = Array.from(text);
 
     const interval=setInterval(()=>{
 
-        element.textContent += text.charAt(i);
+        element.textContent += letters[i];
 
         i++;
 
-        if(i>=text.length){
+        if(i>=letters.length){
 
             clearInterval(interval);
 
