@@ -61,29 +61,7 @@ body, html{
     font-size: 1 rem;
     cursor: pointer;
 }
-/* Mobile Firsr: Default styles apply to all devices */
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-    .nav-toggle {
-        display: block; /* Show toggle on mobile */
-    }
-    
-    .nav-links {
-        display: none; /* Hide menu by default on mobile */
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        background: #1a1a1a;
-        text-align: center;
-        padding: 20px 0;
-    }
 
-    .nav-links.active {
-        display: flex; /* Shown when toggled */
-    }
-}
 /* add enough padding so content starts below the header*/
 main {
     padding: top 80px;
@@ -156,41 +134,25 @@ body {
     min-height: 100vh;
 }
 
-
-
-/* This rule activates only when the screen width is 768px or less */
 @media (max-width: 768px) {
-    
-    .page-wrapper {
-        flex-direction: column; /* Stacks items vertically instead of side-by-side */
-        justify-content: center;
-        height: 40vh;
-        padding-bottom: 50px;
-    }
-
-
-}
-/* --- Mobile/Android Specific Adjustments --- */
-@media (max-width: 768px) {
-    .navbar {
-        /* Align items to center for mobile */
-        justify-content: center; 
-        padding-top: 5px; /* Adds the margin at the top you wanted */
-    }
-
-    .nav-logo {
-        width: 50px; /* Adjust this value to make the logo smaller */
-        height: auto;
+    .nav-toggle {
+        display: block; /* Show toggle on mobile */
     }
     
-    /* If you need to fix the title/hero-image alignment */
-    .hero-title-image {
-        width: 85%; /* Ensures the main title scales nicely on mobile */
-        margin: 0 auto;
-        display: block;
-        
+    .nav-links {
+        display: none; /* Hide menu by default on mobile */
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: #1a1a1a;
+        text-align: center;
+        padding: 20px 0;
     }
-    .hero-title-image{
-        padding-top: 5px;
+
+    .nav-links.active {
+        display: flex; /* Shown when toggled */
     }
 }
+
