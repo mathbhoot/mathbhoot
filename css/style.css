@@ -55,11 +55,6 @@ body, html{
 }
 /* --- Mobile/Android Specific Adjustments --- */
 @media (max-width: 768px) {
-    .navbar {
-        /* Align items to center for mobile */
-        justify-content: center; 
-        padding-top: 5px; /* Adds the margin at the top you wanted */
-    }
 
     .nav-logo {
         width: 50px; /* Adjust this value to make the logo smaller */
