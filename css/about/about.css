@@ -391,13 +391,6 @@ a{
 
 @media(max-width:768px){
     
-    
-    .page-wrapper {
-        flex-direction: column; /* Stacks items vertically instead of side-by-side */
-        justify-content: center;
-        height: 1vh;
-        padding-bottom: 50px;
-    }
     .nav-toggle {
         display: block; /* Show toggle on mobile */
     }
