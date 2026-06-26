@@ -1,9 +1,4 @@
 /* style.css */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 /* Ensures padding/ borders don't affect width */
 /* Margin for elements can touch edge */
 body, html{
@@ -48,7 +43,7 @@ body, html{
         flex-direction: column; /* Stacks items vertically instead of side-by-side */
         justify-content: center;
         height: 1vh;
-        padding-bottom: 50px;
+        padding-bottom: 25px;
     }
 
 

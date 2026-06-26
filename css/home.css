@@ -24,6 +24,7 @@
 .nav-links {
     display: flex;
     list-style: none;
+    font-weight: bold;
     gap: 25px;
 }
 
@@ -69,18 +70,6 @@ html{
 
 }
 
-/* Footer Styles 100% width and stays at bottom */
-.site-footer {
-    padding-bottom: 0%;
-    width: 100%;
-    background: #000000da; /* Dark theme to match your mystery vibe */
-    color: #ffffff;
-    padding: 20px 0;
-    text-align: center;
-    margin-top: auto; /* Ensures it stays at bottom if page is short */
-    z-index: 1000;
-}
-
 .fixed-quote p{
     color: #ffffff;
     font-size: 1 rem;
@@ -96,31 +85,18 @@ html{
     
 }
 
-.footer-links {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    gap: 500px;
-    margin-top: 15px;
-}
-
-.footer-links a {
-    color: #ccc;
-    text-decoration: none;
-    font-size: 1rem;
-}
-
-.footer-links a:hover {
-    color: #ffffff;
-    text-decoration: blink;
-}
 
 /* Ensure body uses Flexbox for sticky footer */
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+body{
+    min-width:320px;
+    overflow-x:hidden;
+    background:
+        radial-gradient(circle at top left, rgba(46,95,120,.2), transparent 34rem),
+        var(--bg);
+    color:var(--text);
+    font-family:Georgia, serif;
+    line-height:1.8;
+    padding: 5px;
 }
 
 @media (max-width: 768px) {
