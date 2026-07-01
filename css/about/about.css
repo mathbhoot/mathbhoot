@@ -14,11 +14,14 @@
 .navbar {
     position: fixed;
     top:0;
+    left: 0;
+    right: 0;
     z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    min-height: 58px;
     padding: 0 15px;
     background: #000000;
 }
@@ -27,6 +30,7 @@
     display: flex;
     list-style: none;
     gap: 25px;
+    min-width:0;
 }
 
 .nav-links a {
@@ -40,8 +44,10 @@
     background: none;
     border: none;
     color: white;
-    font-size: 1 rem;
+    font-size: 1.35rem;
     cursor: pointer;
+    line-height: 1;
+    padding: 12px;
 }
 
 
@@ -385,6 +391,10 @@ a{
     
     .nav-toggle {
         display: block; /* Show toggle on mobile */
+        flex:0 0 auto;
+        margin-left:auto;
+        position:relative;
+        z-index:1001;
     }
     .nav-logo {
         width: 50px; /* Adjust this value to make the logo smaller */
@@ -431,12 +441,14 @@ a{
         display: none; /* Hide menu by default on mobile */
         flex-direction: column;
         position: absolute;
-        top: 60px;
+        top: 100%;
         left: 0;
         width: 100%;
+        max-width:100vw;
         background: #1a1a1a;
         text-align: center;
         padding: 20px 0;
+        gap: 14px;
     }
     .nav-links.active {
         display: flex; /* Shown when toggled */
